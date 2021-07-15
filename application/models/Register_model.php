@@ -48,11 +48,10 @@ class Register_model extends CI_Model {
 		     $mail = $this->phpmailer_lib->load();
 		         //SMTP CONFIGURATIONS
 		     $mail->isSMTP();
-		     $mail->Host = 'server294.web-hosting.com';
+		     $mail->Host = 'server';
 		       $mail->SMTPAuth = true;
-		       $mail->Username = 'support@topnetworkguide.com';
-		       $mail->Password = '^XN#tO,sGI-u';
-
+		       $mail->Username = 'support';
+		       $mail->Password = '123';
         	   $mail->SMTPOptions = array(
                  'ssl' => array(
                  'verify_peer' => false,
