@@ -4,7 +4,7 @@
                             <div class="r-icon-stats">
                                 <i class="ti-user bg-megna"></i>
                                 <div class="bodystate">
-                                    <h4><?php echo $this->db->get('patient')->num_rows(); ?></h4>
+                                    <h4></h4>
                                     <span class="text-muted">Patient(s)</span>
                                 </div>
                             </div>
@@ -15,7 +15,7 @@
                             <div class="r-icon-stats">
                                 <i class="ti-shopping-cart bg-info"></i>
                                 <div class="bodystate">
-                                    <h4><?php echo $this->db->get('doctors')->num_rows(); ?></h4>
+                                    <h4></h4>
                                     <span class="text-muted">Doctor(s)</span>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
                             <div class="r-icon-stats">
                                 <i class="ti-wallet bg-success"></i>
                                 <div class="bodystate">
-                                    <h4><?php echo $this->db->get('donor')->num_rows(); ?></h4>
+                                    <h4></h4>
                                     <span class="text-muted">Donors</span>
                                 </div>
                             </div>
@@ -159,17 +159,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $count = 1;
-                                        $select_patient = $this->patient_model->select_all_patients(); 
-                                        foreach ($select_patient as $patient): ?>
-                                        <tr>
-                                            <td><?= $count++; ?></td>
-                                            <td><?= $patient['name']; ?></td>
-                                            <td><?= $patient['discharge_condition']; ?></td>
-                                            
-                                            <td><span class="label label-danger"><?= $patient['diagnosis']; ?></span> </td>
-                                        </tr>
-                                        <?php endforeach; ?>
+                                        
                                         
                                     </tbody>
                                 </table>

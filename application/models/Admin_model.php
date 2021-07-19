@@ -1,17 +1,34 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Register_model extends CI_Model { 
+class Admin_model extends CI_Model { 
     
     function __construct()
     {
         parent::__construct();
     }
 
-    
-    function insert_user()
+   function insert_health_worker()
+   {
+   	$page_data = array(
+   		'fname'      => $this->input->post('fname'),
+   		'lname'      => $this->input->post('lname'),
+   		'email'      => $this->input->post('email'),
+   		'password'   => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+   		'age'        => $this->input->post('age'),
+   		'gender'     => $this->input->post('gender'),
+   		'cadre'      => $this->input->post('cadre'),
+   		'department' => $this->input->post('department'),
+   	);
+   	$this->db->insert('health_workers', $page_data);
+   	$health_worker_id = $this->db->insert_id();
+
+   }
+
+
+   function insert_patient()
     {
-    	    $data['email'] = html_escape($this->input->post('email'));
+            $data['email'] = html_escape($this->input->post('email'));
             $data['fname'] = html_escape($this->input->post('fname'));
             $data['lname'] = html_escape($this->input->post('lname'));
             
@@ -26,7 +43,7 @@ class Register_model extends CI_Model {
             //Encrypt the users password
             $data['password'] = password_hash(($this->input->post('password')), PASSWORD_DEFAULT);
             if (! $data['password']) {
-            	return false;
+                return false;
             }
            
             $data['login_status'] = 0;
@@ -39,23 +56,37 @@ class Register_model extends CI_Model {
 
             //get the id of the inserted user
             $user_id = $this->db->insert_id();
-                                                                                                        
-	         $receiverEmail =  $data['email'];
-	         $subject = 'Confirm Your Email Address';
-	         $message = 'Click on the link below to confirm your email address';
+
+                $img = $this->input->post('image');
+                $folderPath = "uploads/users_image";
+              
+                $image_parts = explode(";base64,", $img);
+                $image_type_aux = explode("image/", $image_parts[0]);
+                $image_type = $image_type_aux[1];
+              
+                $image_base64 = base64_decode($image_parts[1]);
+                $fileName = $user_id . '.png';
+              
+                $file = $folderPath . $fileName;
+                file_put_contents($file, $image_base64);
+              
+                print_r($fileName);                                                                                          
+             $receiverEmail =  $data['email'];
+             $subject = 'Confirm Your Email Address';
+             $message = 'Click on the link below to confirm your email address';
              $link = '<a href="' . base_url().'register/user_verification/'.$data['verification_code'].'">click here</a>';
             
-		        
-		     $this->load->library('phpmailer_lib');
-		     $mail = $this->phpmailer_lib->load();
-		         //SMTP CONFIGURATIONS
-		     $mail->isSMTP();
-		     $mail->Host = '';
-		       $mail->SMTPAuth = true;
-		       // $mail->Username = '';
-		       // $mail->Password = '';
+                
+             $this->load->library('phpmailer_lib');
+             $mail = $this->phpmailer_lib->load();
+                 //SMTP CONFIGURATIONS
+             $mail->isSMTP();
+             $mail->Host = '';
+               $mail->SMTPAuth = true;
+               // $mail->Username = '';
+               // $mail->Password = '';
 
-        	   $mail->SMTPOptions = array(
+               $mail->SMTPOptions = array(
                  'ssl' => array(
                  'verify_peer' => false,
                  'verify_peer_name' => false,
@@ -91,26 +122,8 @@ class Register_model extends CI_Model {
                }else{
                  echo 'message sent';
                }
+
+              ;
     }
-
-
-    function verify_user($verification_code)
-    {
-        $user_email_exists = $this->db->get_where('users', array('verification_code' => $verification_code));
-        
-
-        if ($user_email_exists->num_rows() > 0) {
-            return  $this->db->set('email_verified', ('1'))
-                    ->where('verification_code', $verification_code)
-                    ->update('users');
-            
-        }
-    }
-
-
-
     
 }
-
-
-
