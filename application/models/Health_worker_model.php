@@ -1,30 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Admin_model extends CI_Model { 
+class Health_worker_model extends CI_Model { 
     
     function __construct()
     {
         parent::__construct();
     }
-
-   function insert_health_worker()
-   {
-   	$page_data = array(
-   		'fname'      => $this->input->post('fname'),
-   		'lname'      => $this->input->post('lname'),
-   		'email'      => $this->input->post('email'),
-   		'password'   => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-   		'age'        => $this->input->post('age'),
-   		'gender'     => $this->input->post('gender'),
-   		'cadre'      => $this->input->post('cadre'),
-   		'department' => $this->input->post('department'),
-   	);
-    $page_data['role_id']  = 3;
-   	$this->db->insert('health_worker', $page_data);
-   	$health_worker_id = $this->db->insert_id();
-
-   }
 
 
    function insert_patient()
@@ -59,7 +41,7 @@ class Admin_model extends CI_Model {
             $user_id = $this->db->insert_id();
 
                 $img = $this->input->post('image');
-                $folderPath = "uploads/users_image";
+                $folderPath = "uploads/users_image/";
               
                 $image_parts = explode(";base64,", $img);
                 $image_type_aux = explode("image/", $image_parts[0]);
@@ -124,7 +106,47 @@ class Admin_model extends CI_Model {
                  echo 'message sent';
                }
 
-              ;
+              
+    }
+
+
+    function insert_encounter($user_id, $health_worker_id)
+    {
+            $data['date'] = html_escape($this->input->post('date'));
+            $data['time'] = html_escape($this->input->post('time'));
+            $data['visit'] = html_escape($this->input->post('visit'));
+            $data['user_id'] = $user_id;
+            $data['health_worker_id'] = $health_worker_id;
+            
+            $data['bp'] = html_escape($this->input->post('bp'));
+            $data['temp'] = html_escape($this->input->post('temp'));
+            $data['rr'] = html_escape($this->input->post('rr'));
+            $data['complaints'] = html_escape($this->input->post('complaints'));
+            $data['diagnosis'] = html_escape($this->input->post('diagnosis'));
+            $data['treatment'] = html_escape($this->input->post('treatment'));
+
+            $encounter = $this->db->insert('encounter', $data);
+            
+            //get the id of the inserted user
+            $encounter_id = $this->db->insert_id();
+            $data2 =  array(
+                'height' => html_escape($this->input->post('height')),
+                'weight' => html_escape($this->input->post('weight')),
+                'bmi' => html_escape($this->input->post('bmi')),
+            );                   
+            
+             return  $this->db->set($data2)
+                    ->where('user_id', $user_id)
+                    ->update('users');                                                                  
+              
+    }
+
+    function updateHealthWorker($health_worker_id, $user_id)
+    {
+        $data['send_to'] = $health_worker_id;
+        $this->db->where('user_id', $user_id);
+        $this->db->update('encounter', $data);
+        
     }
     
 }

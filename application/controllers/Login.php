@@ -24,7 +24,7 @@ class Login extends CI_Controller {
 	}
 
 	function validate_login() {
-        $email = html_escape($this->input->post('email'));          
+        $email = html_escape($this->input->post('email'));       
         $password = $this->input->post('password');
         $this->login_model->loginFunctionForAllUsers($email, $password);
         
