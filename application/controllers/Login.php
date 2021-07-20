@@ -18,8 +18,25 @@ class Login extends CI_Controller {
 	 */
 	public function index()
 	{
-		
+		if ($this->session->userdata('admin_login') == 1) redirect (base_url(). 'admin/dashboard');
+		if ($this->session->userdata('user_login') == 1) redirect (base_url(). 'user/dashboard');
 		$this->load->view('backend/login');
+	}
+
+	function validate_login() {
+        $email = html_escape($this->input->post('email'));       
+        $password = $this->input->post('password');
+        $this->login_model->loginFunctionForAllUsers($email, $password);
+        
+     }
+
+	function logout(){
+	  $login_user = $this->session->userdata('login_type');
+      if($login_user == 'admin'){
+          $this->login_model->logout_model_for_admin();
+      }
+	  $this->session->sess_destroy();
+      redirect('login', 'refresh');
 	}
 
    

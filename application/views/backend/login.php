@@ -6,7 +6,7 @@
 <section id="wrapper" class="login-register">
   <div class="login-box login-sidebar">
     <div class="white-box">
-      <form class="form-horizontal form-material" id="loginform" action="index.html">
+      <?= form_open(base_url().'login/validate_login', array('id' => 'loginform')); ?>
         <a href="javascript:void(0)" class="text-center db"><img src="../plugins/images/eliteadmin-logo-dark.png" alt="Home" /><br/><img src="../plugins/images/eliteadmin-text-dark.png" alt="Home" /></a> 
 
         <!-- check for successfull flash messages and display them -->
@@ -15,14 +15,18 @@
             <div class="alert alert-success hide_message_notification"><?=$this->session->flashdata('flash_message')?></div>
             <?php endif; 
          ?>
+         <?php if($this->session->flashdata('error_message') != "") : ?>
+            <div class="alert alert-danger hide_message_notification"><?=$this->session->flashdata('error_message')?></div>
+            <?php endif; 
+         ?>
         <div class="form-group m-t-40">
           <div class="col-xs-12">
-            <input class="form-control" type="text" required="" placeholder="Username">
+            <input class="form-control" name="email" type="email" required="" placeholder="Username">
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <input class="form-control" type="password" required="" placeholder="Password">
+            <input class="form-control" name="password" type="password" required="" placeholder="Password">
           </div>
         </div>
         <div class="form-group">
@@ -48,7 +52,7 @@
             <p>Don't have an account? <a href="<?= base_url(); ?>register/index" class="text-primary m-l-5"><b>Sign Up</b></a></p>
           </div>
         </div>
-      </form>
+      <?= form_close(); ?>
       <form class="form-horizontal" id="recoverform" action="index.html">
         <div class="form-group ">
           <div class="col-xs-12">

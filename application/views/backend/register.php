@@ -61,6 +61,7 @@
             <div class="alert alert-danger hide_message_notification"><?=$this->session->flashdata('error_message')?></div>
             <?php endif; 
          ?>
+         
          <?php if(validation_errors()){ ?>
             <div class="alert alert-danger hide_message_notification" role="alert">
               <?php echo validation_errors(); ?> 

@@ -103,19 +103,18 @@
                     </li>
                     <!-- /.dropdown -->
                     <li class="dropdown">
-                         <?php
+                         <!-- <?php
                           $key = $this->session->userdata('login_type').'_id';
                           $image_path = 'uploads/'.$this->session->userdata('login_type').'_image/'.$this->session->userdata($key).'.jpg';
                           if(!file_exists($image_path)){
                             $image_path = 'uploads/default.jpg';
                           }
-                         ?>
-                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="<?php echo base_url().$image_path; ?>" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><?php
-                          $account_type = $this->session->userdata('login_type');
-                          $account_id = $account_type.'_id';
-                          $name = $this->crud_model->get_type_name_by_id($account_type, $this->session->userdata($account_id), 'name');
-                          echo $name;
-                         ?></b> </a>
+                         ?> -->
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="<?php echo base_url().$image_path; ?>" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">
+                            
+                            <!-- echo user name here -->
+                             
+                         </b> </a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
                             <li><a href="javascript:void(0)"><i class="ti-user"></i>  My Profile</a></li>
                             <li><a href="javascript:void(0)"><i class="ti-email"></i>  Inbox</a></li>

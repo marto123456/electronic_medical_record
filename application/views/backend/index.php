@@ -2,7 +2,7 @@
         $system_name    = $this->db->get_where('settings', array('type' => 'system_name'))->row()->description;
         $system_address = $this->db->get_where('settings', array('type' => 'address'))->row()->description;
         $footer         = $this->db->get_where('settings', array('type' => 'footer'))->row()->description;
-        $loginType      = $this->session->userdata('login_type');
+        $loginType      = strtolower($this->session->userdata('role'));
         
         
     ?>
@@ -105,7 +105,7 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
- <?php include 'modal.php'; ?>   
+ 
     <!-- jQuery -->
 <?php include 'js.php'; ?>
 
