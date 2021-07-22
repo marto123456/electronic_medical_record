@@ -46,7 +46,7 @@
 
                     <li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-inr p-r-10"></i> <span class="hide-menu"> Communication <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="payments.html">Noticeboard</a></li>
+                            <li> <a href="<?php echo base_url(); ?>health_worker/message">Chat</a></li>
                             <li> <a href="<?php echo base_url(); ?>emailmessage/sendEmailMessage">Email Message</a></li>
                             
                         </ul>
@@ -55,7 +55,7 @@
                    
                     <li><a href="<?= base_url(); ?>admin/change_profile" class="waves-effect"><i class="icon-logout fa-fw"></i> <span class="hide-menu">Update Profile</span></a></li>
 
-                    <li><a href="login.html" class="waves-effect"><i class="icon-logout fa-fw"></i> <span class="hide-menu">Log out</span></a></li>
+                    <li><a href="<?= base_url(); ?>logout/index" class="waves-effect"><i class="icon-logout fa-fw"></i> <span class="hide-menu">Log out</span></a></li>
                     
                 </ul>
             </div>

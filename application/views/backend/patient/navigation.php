@@ -18,35 +18,21 @@
                         <span class="fa arrow"></span></span>
                         </a>
                         <ul class="nav nav-second-level">
-                            <li><a href="<?= base_url(); ?>admin/change_profile"><i class="ti-user"></i> My Profile</a></li>
+                            <li><a href="<?= base_url(); ?>patient/change_profile"><i class="ti-user"></i> My Profile</a></li>
                             <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>
                             <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li>
                             <li><a href="javascript:void(0)"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </li>
                     
-                    <li> <a href="<?php echo base_url(); ?>admin/dashboard" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
+                    <li> <a href="<?php echo base_url(); ?>patient/dashboard" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
 
-                    <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-chart p-r-10"></i> <span class="hide-menu"> Patients <span class="fa arrow"></span></span></a>
-                        <ul class="nav nav-second-level">
-                            <li> <a href="<?php echo base_url(); ?>admin/patient_admission">Patient Admissions</a></li>
-
-                            <li> <a href="<?php echo base_url(); ?>admin/list_patients">All Patients</a></li>
-                        </ul>
-                    </li>
-                    <li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-inr p-r-10"></i> <span class="hide-menu"> Health Workers <span class="fa arrow"></span></span></a>
-                        <ul class="nav nav-second-level">
-                            <li> <a href="<?php echo base_url(); ?>admin/health_worker/">Add Health Worker</a></li>
-                            <li> <a href="<?php echo base_url(); ?>admin/list_health_workers/">Health Workers</a></li>
-                            <li> <a href="<?php echo base_url(); ?>admin/health_worker_department">Doctor Departments</a></li>
-                        </ul>
-                    </li>
+                    
+                    
 
                     <li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-inr p-r-10"></i> <span class="hide-menu"> Communication <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="<?php echo base_url(); ?>admin/message">Chat</a></li>
-                            <li> <a href="<?php echo base_url(); ?>emailmessage/sendEmailMessage">Email Message</a></li>
-                            
+                            <li> <a href="<?php echo base_url(); ?>patient/message">Chat</a></li>
                         </ul>
                     </li>
 
