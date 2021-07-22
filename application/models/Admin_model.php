@@ -55,7 +55,7 @@ class Admin_model extends CI_Model {
             $user = $this->db->insert('users', $data);
             
 
-            //get the id of the inserted user
+            //get the id of the inserted user and use it to insert the image from the webcam into your uploads folder
             $user_id = $this->db->insert_id();
 
                 $img = $this->input->post('image');

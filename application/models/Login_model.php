@@ -41,7 +41,7 @@ class Login_model extends CI_Model {
                  }else if($user_row->role_id == 2){
                      $this->session->set_userdata('user_login', true);
                      $this->session->set_flashdata('flash_message', ('Successfully Login'));
-                     redirect(site_url('user/dashboard'), 'refresh');
+                     redirect(site_url('patient/dashboard'), 'refresh');
                  }        
         }else{
               $this->session->set_flashdata('error_message', ('Invalid Username or Password'));

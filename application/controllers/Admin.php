@@ -31,7 +31,7 @@ class Admin extends CI_Controller {
         
         if ($param1 == 'add') {
 
-        //validation the data before inserting to database
+        //validation the data before inserting to database can be found in the form_validatation config file
           
         //if there are validation errors reload the register form else insert the data to database
          if ($this->form_validation->run('health_worker_register') == FALSE) {
@@ -57,6 +57,7 @@ class Admin extends CI_Controller {
 
 
    function list_health_workers($param1=null, $param2=null, $param3=null) {
+    //if no session of admin_login, then redirect the user to login page
         if ($this->session->userdata('admin_login') != 1) redirect(base_url(). 'login', 'refresh');
 
         $page_data['page_name'] = 'list_health_workers';
@@ -80,7 +81,7 @@ class Admin extends CI_Controller {
                  redirect(base_url(). 'admin/patient_admission', 'refresh');
            
             } else {
-                //get the data from the form
+                //get the data from the form and process it in admin model
                 
                 $this->admin_model->insert_patient();
                 $this->session->set_flashdata('flash_message', get_phrase('user created successfully'));
@@ -107,7 +108,7 @@ class Admin extends CI_Controller {
         if($param1 == 'send_new'){
             
             $message_thread_code = $this->crud_model->send_new_private_message();
-            $this->session->set_flashdata('flash_message', translate('message_sent_successfully'));  
+            $this->session->set_flashdata('flash_message', ('message_sent_successfully'));  
             redirect(base_url(). 'admin/message/message_read/' . $message_thread_code, 'refresh');
         }
 
