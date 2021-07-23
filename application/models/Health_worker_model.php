@@ -110,7 +110,7 @@ class Health_worker_model extends CI_Model {
     }
 
 
-    function insert_encounter($user_id, $health_worker_id)
+    function insert_encounter($user_id)
     {
             $data['date'] = html_escape($this->input->post('date'));
             $data['time'] = html_escape($this->input->post('time'));

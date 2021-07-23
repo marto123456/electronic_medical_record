@@ -61,13 +61,13 @@
                     <label for="example-datetime-local-input" class="col-2 col-form-label"></label>
 			    	<div class="col-md-10">
                         <div class="col-md-4">
-                            <input type="number" name="height" id="height" placeholder="Height" class="form-control" />
+                            <input type="number" name="height" id="height" placeholder="Height" class="form-control" step="any" />
                         </div>
                         <div class="col-md-4">
-                            <input type="number" name="weight" id="weight" placeholder="Weight" class="form-control" />
+                            <input type="number" name="weight" id="weight" placeholder="Weight" class="form-control" step="any" />
                         </div>
                         <div class="col-md-4">
-                            <input type="number" name="bmi" id="bmi" placeholder="bmi" class="form-control" />
+                            <input type="number" name="bmi" id="bmi" placeholder="bmi" class="form-control" step="any"/>
                         </div>            
                     </div>
 			    </div>

@@ -120,20 +120,26 @@ foreach ($patient as $p): ?>
 	                    	<div class="col-md-6">
 	                    		 <input class="btn btn-outline-primary" type="submit" id="example-datetime-local-input" value="Save">
 	                    	</div>
-	                        <div class="col-md-6">
-	                    		 <select class="form-control" onchange="return get_health_worker(this.value)" id="health_worker_id" name="send_to">
-		                            <?php $hw = $this->db->get('health_worker')->result_array();
-
-		                            foreach ($hw as $key => $hw):?>
-		                            <option>Select Doctor</option>
-		                            <option value="<?= $hw['health_worker_id']; ?>"><?= $hw['lname']; ?> <?= $hw['fname']; ?></option>
-		                            <?php endforeach; ?>
-		                          </select> 
-	                    	</div>
+	                        
 
 	                    </div>
 	                </div>
 	            <?php echo form_close(); ?>
+	            <hr>
+	            <div class="row">
+	            	 <label for="example-datetime-local-input" class="col-2 col-form-label"></label>
+	            	<div class="col-10">
+	                    		 <select class="form-control" onchange="return get_health_worker(this.value)" id="health_worker_id" name="send_to">
+	                    		 	<option>Select Doctor</option>
+		                            <?php $hw = $this->db->get('health_worker')->result_array();
+
+		                            foreach ($hw as $key => $hw1):?>
+		                            
+		                            <option value="<?= $hw1['health_worker_id']; ?>"><?= $hw1['lname']; ?> <?= $hw1['fname']; ?></option>
+		                            <?php endforeach; ?>
+		                          </select> 
+	                    	</div>
+	            </div>
 	        </div>
 	    </div>
 	</div>

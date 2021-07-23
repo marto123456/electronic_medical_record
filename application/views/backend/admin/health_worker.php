@@ -59,8 +59,8 @@
                     <label for="example-datetime-local-input" class="col-2 col-form-label">Department</label>
                     <div class="col-10">
                         <select class="form-control" name="department">
-                            <option value="his">Hispania</option>
-                             <option value="gi">Given</option>
+                            <option value="medicine">Medicine</option>
+                             <option value="admin">Admin</option>
                         </select>
                     </div>
                 </div>
