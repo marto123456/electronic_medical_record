@@ -37,7 +37,7 @@ class Health_worker extends CI_Controller {
                 $this->session->set_flashdata('age', form_error('age'));
                 $this->session->set_flashdata('gender', form_error('gender'));
                 $this->session->set_flashdata('password', form_error('password'));
-                 redirect(base_url(). 'admin/patient_admission', 'refresh');
+                 redirect(base_url(). 'health_worker/patient_admission', 'refresh');
            
             } else {
                 //get the data from the form
@@ -72,11 +72,11 @@ class Health_worker extends CI_Controller {
         $this->load->view('backend/index', $page_data);
    }
 
-   function add_encounter($user_id, $health_worker_id)
+   function add_encounter($user_id)
    {
        if ($this->session->userdata('health_worker_login') != 1) redirect(base_url(). 'login', 'refresh');
 
-       $this->health_worker_model->insert_encounter($user_id, $health_worker_id);
+       $this->health_worker_model->insert_encounter($user_id);
                 $this->session->set_flashdata('flash_message', get_phrase('Encounter Saved'));
                 redirect(base_url(). 'health_worker/list_patients', 'refresh');
 
@@ -100,7 +100,7 @@ class Health_worker extends CI_Controller {
         $data = $this->health_worker_model->updateHealthWorker($health_worker_id, $user_id);
         return json_encode($data);
         $this->session->set_flashdata('flash_message', get_phrase('Patient Assigned to Doctor'));
-        redirect(base_url(). 'health_worker/list_encounter', 'refresh');
+        redirect(base_url(). 'health_worker/list_patients', 'refresh');
   
     }
 

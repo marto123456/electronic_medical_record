@@ -22,6 +22,8 @@ class Patient extends CI_Controller {
      function dashboard() {
         if ($this->session->userdata('user_login') != 1) redirect(base_url(). 'login', 'refresh');
         $page_data['page_name'] = 'dashboard';
+        $page_data['user']      = $this->db->get('users', array('user_id' => $this->session->userdata('user_id')))->row_array();
+        $page_data['user_encounter']      = $this->db->get('encounter', array('user_id' => $this->session->userdata('user_id')))->row_array();
         $page_data['page_title'] = get_phrase('Users Dashboard');
         $this->load->view('backend/index', $page_data);
     }
