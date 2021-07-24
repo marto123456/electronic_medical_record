@@ -59,6 +59,52 @@ class Patient extends CI_Controller {
         $this->load->view('backend/index', $page_data); 
     }
 
+    function get_all_patients(){
+        
+          $users = $this->db->get('users')->result_array();
+          $count = 1;
+          foreach ($users as $user) {
+            //get the health worker id that a particular user was assigned to in the encounter form
+            $en = $this->db->get_where('encounter', array('user_id' => $user['user_id']))->row_array()['send_to'];
+            //using the health worker id from above, get the health worker first and last name
+            $hw = $this->db->get_where('health_worker', array('health_worker_id' => $en))->row_array();
+              
+
+           echo '<tr><td>'.$count++.'</td><td>'.$user['fname'].'</td><td>'.$user['lname'].'</td><td>'.$user['email'].'</td><td>'.$user['gender'].'</td><td>'.$user['age'].'</td><td>'.$user['bmi'].'</td><td>'.$this->patient_model->patient_created_by()['fname'].' '. $this->patient_model->patient_created_by()['lname'].'</td><td>'.$hw['fname']. ' '.$hw['lname'].'<td><a target="_blank" href="'.base_url().'health_worker/encounter/'. $user['user_id'].'" class="text-primary">Encounter</a><a href="" class="text-success">Edit</a><a href="" class="text-danger">Delete</a></td><tr>'; 
+           } 
+       
+   }
+
+    function get_patients_gender($gender)
+    {
+
+        if ($gender == '0') {
+          $users = $this->db->get('users')->result_array();
+          $count = 1;
+          foreach ($users as $user) {
+            $en = $this->db->get_where('encounter', array('user_id' => $user['user_id']))->row_array()['send_to'];
+            $hw = $this->db->get_where('health_worker', array('health_worker_id' => $en))->row_array();
+              
+
+           echo '<tr><td>'.$count++.'</td><td>'.$user['fname'].'</td><td>'.$user['lname'].'</td><td>'.$user['email'].'</td><td>'.$user['gender'].'</td><td>'.$user['age'].'</td><td>'.$user['bmi'].'</td><td>'.$this->patient_model->patient_created_by()['fname'].' '. $this->patient_model->patient_created_by()['lname'].'</td><td>'.$hw['fname']. ' '.$hw['lname'].'<td><a target="_blank" href="'.base_url().'health_worker/encounter/'. $user['user_id'].'" class="text-primary">Encounter</a><a href="" class="text-success">Edit</a><a href="" class="text-danger">Delete</a></td><tr>'; 
+           } 
+        }else{
+          $users = $this->db->get_where('users', array('gender' => $gender))->result_array();
+          $count = 1;
+          foreach ($users as $user) {
+            $en = $this->db->get_where('encounter', array('user_id' => $user['user_id']))->row_array()['send_to'];
+            $hw = $this->db->get_where('health_worker', array('health_worker_id' => $en))->row_array();
+              
+
+           echo '<tr><td>'.$count++.'</td><td>'.$user['fname'].'</td><td>'.$user['lname'].'</td><td>'.$user['email'].'</td><td>'.$user['gender'].'</td><td>'.$user['age'].'</td><td>'.$user['bmi'].'</td><td>'.$this->patient_model->patient_created_by()['fname'].' '. $this->patient_model->patient_created_by()['lname'].'</td><td>'.$hw['fname']. ' '.$hw['lname'].'<td><a target="_blank" href="'.base_url().'health_worker/encounter/'. $user['user_id'].'" class="text-primary">Encounter</a><a href="" class="text-success">Edit</a><a href="" class="text-danger">Delete</a></td><tr>'; 
+           } 
+       }
+     
+        
+    }
+
+    
+
 
    
 

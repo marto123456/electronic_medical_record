@@ -1,7 +1,27 @@
    <div class="row">
         <div class="col-sm-12">
-            <div class="white-box">
-                <h3 class="box-title">dfdf</h3>
+                    <div class="white-box">
+                        <div class="col-md-4">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <!-- filter by gender on the list patients page -->
+                                    <select class="form-control selCustomer multiple" onchange="return get_patients_gender(this.value)" id="gender">
+                                        <option value="0">Select Gender</option>
+                                        <?php 
+                                        $this->db->distinct();
+                                        $this->db->select('gender');
+                                        $this->db->where('gender', 'male');
+                                        $this->db->or_where('gender', 'female');
+                                        $gender = $this->db->get('users')->result_array();
+                                        
+                                        foreach($gender as $g): ?>
+                                           <option value="<?= $g['gender']; ?>"><?= $g['gender']; ?>
+                                           </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                            </div>         
+                    </div><br>
                 
                 <div class="table-responsive">
                     <table class="table color-table primary-table">
@@ -19,42 +39,40 @@
                                 <th>Options</th>
                             </tr>
                         </thead>
-                        <tbody>
-                        <?php 
-                        $count = 1;
-                        foreach($patients as $patient): ?>
-                            <tr>
-                                <td><?php echo $count++; ?></td>
-                                <td><?= $patient['fname']; ?></td>
-                                <td><?= $patient['lname']; ?></td>
-                                <td><?= $patient['email']; ?></td>
-                                <td><?= $patient['gender']; ?></td>
-                                <td><?= $patient['age']; ?></td>
-                                <td><?= $patient['bmi']; ?></td>
-                                <td>
-                                    <?php $hw = $this->session->userdata('health_worker_id');
-                                        $hwab = $this->db->get_where('health_worker', array('health_worker_id' => $hw))->row_array();
-                                        echo $hwab['fname'].' '. $hwab['lname'];
-                                    ?>
-
-                                </td>
-                                <td>
-                                    <?php $en = $this->db->get_where('encounter', array('user_id' => $patient['user_id']))->row_array()['send_to'];
-                                        $hw = $this->db->get_where('health_worker', array('health_worker_id' => $en))->row_array();
-                                        echo $hw['fname'].' '. $hw['lname'];
-                                    ?>
-
-                                </td>
-                                <td>
-                                	<a target="_blank" href="<?php echo base_url(); ?>health_worker/encounter/<?php echo $patient['user_id']; ?>" class="text-primary">Encounter</a> |
-                                	<a href="" class="text-success">Edit</a> |
-                                	<a href="" class="text-danger">Delete</a>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
+                        <tbody id="selector_holder">
+                    
                         </tbody>
+
                     </table>
                 </div>
             </div>
         </div>        
     </div>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+       $.ajax({
+            url: '<?php echo base_url(); ?>patient/get_all_patients/',
+            method: 'GET',
+                                                                                                    
+            success:function(response){
+                jQuery('#selector_holder').html(response);
+            }
+        });
+    });
+
+// get the gender from the form and pass it to patient controller to get the patients by gender
+    function get_patients_gender(gender){
+        var gender = $('#gender').val();
+        // var user_id = $('#user_id').val();
+        console.log(gender);
+        $.ajax({
+            url: '<?php echo base_url(); ?>patient/get_patients_gender/' + gender,
+            method: 'GET',
+            data:{gender:gender},                                                                                          
+            success:function(response){
+                jQuery('#selector_holder').html(response);
+            }
+        });
+    }
+</script>

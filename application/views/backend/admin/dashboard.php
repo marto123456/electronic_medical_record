@@ -48,9 +48,9 @@
 
 <div class="white-box">
 <h3>Users by Gender</h3>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="myChart3" width="400" height="400"></canvas>
             <script>
-            var ctx = document.getElementById('myChart').getContext('2d');
+            var ctx = document.getElementById('myChart3').getContext('2d');
             var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
@@ -118,20 +118,13 @@
         
             
         ?>
-        <?php 
-        echo $query; echo $query1; echo $query2;
-            
-        ?>
-        
-  
-        
-
+       
 <div class="white-box">
 
-<canvas id="myChart1" width="400" height="400"></canvas>
+<canvas id="myChart4" width="400" height="400"></canvas>
             <script>
-            var ctx = document.getElementById('myChart1').getContext('2d');
-            var myChart = new Chart(ctx, {
+            var ctx = document.getElementById('myChart4').getContext('2d');
+            var myChart4 = new Chart(ctx, {
             type: 'pie',
             data: {
             labels: [

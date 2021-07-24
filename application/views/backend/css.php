@@ -21,7 +21,7 @@
     <link href="<?php echo base_url(); ?>bend/css/style.css" rel="stylesheet">
     <!-- color CSS -->
     <link href="<?php echo base_url(); ?>bend/css/colors/megna.css" id="theme" rel="stylesheet">
-   
+    <script src="<?php echo base_url(); ?>bend/assets/js/chartjs.min.js"></script>
     <script src="<?php echo base_url(); ?>bend/plugins/bower_components/jquery/dist/jquery.min.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
 </head>
